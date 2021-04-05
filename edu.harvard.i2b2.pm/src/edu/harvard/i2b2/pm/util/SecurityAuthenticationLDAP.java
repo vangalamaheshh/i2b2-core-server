@@ -68,8 +68,19 @@ public class SecurityAuthenticationLDAP implements SecurityAuthentication {
 		securityAuthentication = securityAuthentication.toUpperCase();
 		setSSL = (String) params.get("ssl");
 		dn = (String) params.get("distinguished_name");
-		principalName = dn + username + "," + searchBase;
-		
+		//principalName = dn + username + "," + searchBase;
+		/*---------------------------
+    Three formats work with UMass - LDAP
+    [4/2 2:53 PM] Matthew, George
+    Our LDAP environment supports three ways of binding. One is just like above, with the full distinguished_name:
+
+    1) CN=<lastname>\, <firstname>,OU=StaffActive,OU=IAM,OU=Accounts,DC=ad,DC=umassmed,DC=edu
+    2) <username>@ad.umassmed.edu
+    3) umassmed\<username>
+
+    We are using #3 for i2b2
+    -----------------------------*/
+    principalName = 'umassmed\' + username
 		// DIGEST-MD5 configuration from the parameters
 		securityLayer = (String) params.get("security_layer");
 		privacyStrength = (String) params.get("privacy_strength");
