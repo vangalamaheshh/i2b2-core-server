@@ -80,7 +80,7 @@ public class SecurityAuthenticationLDAP implements SecurityAuthentication {
 
     We are using #3 for i2b2
     -----------------------------*/
-    principalName = 'umassmed\' + username
+    principalName = 'umassmed\' + username;
 		// DIGEST-MD5 configuration from the parameters
 		securityLayer = (String) params.get("security_layer");
 		privacyStrength = (String) params.get("privacy_strength");
